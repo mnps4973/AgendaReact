@@ -1,3 +1,9 @@
+import MyCalendar from "./mycalendar";
+
 export default function Page() {
-    return <p>agenda will appear here</p>;
+    return (
+        <div>
+            <MyCalendar />
+        </div>
+    );
 }
