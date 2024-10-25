@@ -36,15 +36,17 @@ async function seedStickers() {
      CREATE TABLE IF NOT EXISTS stickers (
        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
        name VARCHAR(255) NOT NULL,
-       image VARCHAR(255) NOT NULL
+       image VARCHAR(255) NOT NULL,
+       price VARCHAR(255) NOT NULL,
+       collection VARCHAR(255) NOT NULL
      );
    `;
 
    const insertedStickers = await Promise.all(
      stickers.map(
        (sticker) => client.sql`
-         INSERT INTO stickers (id, name, image)
-         VALUES (${sticker.id}, ${sticker.name}, ${sticker.image})
+         INSERT INTO stickers (id, name, image, price, collection)
+         VALUES (${sticker.id}, ${sticker.name}, ${sticker.image}, ${sticker.price}, ${sticker.collection})
          ON CONFLICT (id) DO NOTHING;
        `,
      ),

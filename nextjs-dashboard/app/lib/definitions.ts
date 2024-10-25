@@ -15,14 +15,14 @@ export type User = {
 export type Agenda = {
   id: string;
   design: string;
-  price: Number;
+  price: string;
 }
 
 export type Sticker = {
   id: string;
   name: string;
   image: string;
-  price: DoubleRange;
+  price: string;
   collection: string;
 };
 

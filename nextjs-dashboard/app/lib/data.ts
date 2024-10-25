@@ -1,15 +1,28 @@
 import { sql } from '@vercel/postgres';
 import {
-  CustomerField,
-  CustomersTableType,
-  InvoiceForm,
-  InvoicesTable,
-  LatestInvoiceRaw,
-  Revenue,
+  User,
+  Agenda,
+  Sticker,
+  AgendaItem
 } from './definitions';
 import { formatCurrency } from './utils';
 
-export async function fetchRevenue() {
+export async function fetchStickers(){
+  try {
+    const data = await sql<Sticker>`
+      SELECT * FROM stickers
+    `;
+
+    const stickers = data.rows;
+    return stickers;
+
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all stickers.');
+  }
+}
+
+/*export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
@@ -215,3 +228,4 @@ export async function fetchFilteredCustomers(query: string) {
     throw new Error('Failed to fetch customer table.');
   }
 }
+ */
